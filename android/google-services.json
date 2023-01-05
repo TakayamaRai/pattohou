@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "877293213626",
+    "project_id": "pattohou-dev",
+    "storage_bucket": "pattohou-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877293213626:android:d4d98bc2986b9269b82f83",
+        "android_client_info": {
+          "package_name": "com.rai.pattohou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877293213626-60m477p18i3fo0jd8pupue82p8de3dj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw1TRHzfFdBtZaXTWgOzjnugpwCmvpsjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877293213626-60m477p18i3fo0jd8pupue82p8de3dj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "877293213626-cldft2ur6pgp98rn0tj7ol8ui9qs4pck.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rai.pattohou"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
