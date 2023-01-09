@@ -8,8 +8,9 @@ part of 'work_model.dart';
 
 _$_WorkModel _$$_WorkModelFromJson(Map<String, dynamic> json) => _$_WorkModel(
       rowId: json['rowId'] as int? ?? 0,
-      majorItem: json['majorItem'] as String? ?? '',
-      minerItem: json['minerItem'] as String? ?? '',
+      item:
+          (json['item'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
       remark: json['remark'] as String? ?? '',
       images: (json['images'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, e as String),
@@ -20,8 +21,7 @@ _$_WorkModel _$$_WorkModelFromJson(Map<String, dynamic> json) => _$_WorkModel(
 Map<String, dynamic> _$$_WorkModelToJson(_$_WorkModel instance) =>
     <String, dynamic>{
       'rowId': instance.rowId,
-      'majorItem': instance.majorItem,
-      'minerItem': instance.minerItem,
+      'item': instance.item,
       'remark': instance.remark,
       'images': instance.images,
     };

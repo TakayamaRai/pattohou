@@ -9,16 +9,14 @@ part 'work_model.g.dart';
 class WorkModel with _$WorkModel {
   const factory WorkModel({
     @Default(0) int rowId,
-    @Default('') String majorItem,
-    @Default('') String minerItem,
+    @Default([]) List<String> item,
     @Default('') String remark,
     @Default({'before':'','after':''}) Map<String,String> images,
   }) = _WorkModel;
 
   factory WorkModel.empty() => const WorkModel(
       rowId:0,
-      majorItem:'',
-      minerItem: "",
+      item:[],
       remark: '',
       images:{'before':'','after':''}
   );

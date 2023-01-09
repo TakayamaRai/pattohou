@@ -24,14 +24,12 @@ class _$WorkModelTearOff {
 
   _WorkModel call(
       {int rowId = 0,
-      String majorItem = '',
-      String minerItem = '',
+      List<String> item = const [],
       String remark = '',
       Map<String, String> images = const {'before': '', 'after': ''}}) {
     return _WorkModel(
       rowId: rowId,
-      majorItem: majorItem,
-      minerItem: minerItem,
+      item: item,
       remark: remark,
       images: images,
     );
@@ -48,8 +46,7 @@ const $WorkModel = _$WorkModelTearOff();
 /// @nodoc
 mixin _$WorkModel {
   int get rowId => throw _privateConstructorUsedError;
-  String get majorItem => throw _privateConstructorUsedError;
-  String get minerItem => throw _privateConstructorUsedError;
+  List<String> get item => throw _privateConstructorUsedError;
   String get remark => throw _privateConstructorUsedError;
   Map<String, String> get images => throw _privateConstructorUsedError;
 
@@ -65,8 +62,7 @@ abstract class $WorkModelCopyWith<$Res> {
       _$WorkModelCopyWithImpl<$Res>;
   $Res call(
       {int rowId,
-      String majorItem,
-      String minerItem,
+      List<String> item,
       String remark,
       Map<String, String> images});
 }
@@ -82,8 +78,7 @@ class _$WorkModelCopyWithImpl<$Res> implements $WorkModelCopyWith<$Res> {
   @override
   $Res call({
     Object? rowId = freezed,
-    Object? majorItem = freezed,
-    Object? minerItem = freezed,
+    Object? item = freezed,
     Object? remark = freezed,
     Object? images = freezed,
   }) {
@@ -92,14 +87,10 @@ class _$WorkModelCopyWithImpl<$Res> implements $WorkModelCopyWith<$Res> {
           ? _value.rowId
           : rowId // ignore: cast_nullable_to_non_nullable
               as int,
-      majorItem: majorItem == freezed
-          ? _value.majorItem
-          : majorItem // ignore: cast_nullable_to_non_nullable
-              as String,
-      minerItem: minerItem == freezed
-          ? _value.minerItem
-          : minerItem // ignore: cast_nullable_to_non_nullable
-              as String,
+      item: item == freezed
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       remark: remark == freezed
           ? _value.remark
           : remark // ignore: cast_nullable_to_non_nullable
@@ -120,8 +111,7 @@ abstract class _$WorkModelCopyWith<$Res> implements $WorkModelCopyWith<$Res> {
   @override
   $Res call(
       {int rowId,
-      String majorItem,
-      String minerItem,
+      List<String> item,
       String remark,
       Map<String, String> images});
 }
@@ -138,8 +128,7 @@ class __$WorkModelCopyWithImpl<$Res> extends _$WorkModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rowId = freezed,
-    Object? majorItem = freezed,
-    Object? minerItem = freezed,
+    Object? item = freezed,
     Object? remark = freezed,
     Object? images = freezed,
   }) {
@@ -148,14 +137,10 @@ class __$WorkModelCopyWithImpl<$Res> extends _$WorkModelCopyWithImpl<$Res>
           ? _value.rowId
           : rowId // ignore: cast_nullable_to_non_nullable
               as int,
-      majorItem: majorItem == freezed
-          ? _value.majorItem
-          : majorItem // ignore: cast_nullable_to_non_nullable
-              as String,
-      minerItem: minerItem == freezed
-          ? _value.minerItem
-          : minerItem // ignore: cast_nullable_to_non_nullable
-              as String,
+      item: item == freezed
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       remark: remark == freezed
           ? _value.remark
           : remark // ignore: cast_nullable_to_non_nullable
@@ -173,8 +158,7 @@ class __$WorkModelCopyWithImpl<$Res> extends _$WorkModelCopyWithImpl<$Res>
 class _$_WorkModel implements _WorkModel {
   const _$_WorkModel(
       {this.rowId = 0,
-      this.majorItem = '',
-      this.minerItem = '',
+      this.item = const [],
       this.remark = '',
       this.images = const {'before': '', 'after': ''}});
 
@@ -186,10 +170,7 @@ class _$_WorkModel implements _WorkModel {
   final int rowId;
   @JsonKey()
   @override
-  final String majorItem;
-  @JsonKey()
-  @override
-  final String minerItem;
+  final List<String> item;
   @JsonKey()
   @override
   final String remark;
@@ -199,7 +180,7 @@ class _$_WorkModel implements _WorkModel {
 
   @override
   String toString() {
-    return 'WorkModel(rowId: $rowId, majorItem: $majorItem, minerItem: $minerItem, remark: $remark, images: $images)';
+    return 'WorkModel(rowId: $rowId, item: $item, remark: $remark, images: $images)';
   }
 
   @override
@@ -208,8 +189,7 @@ class _$_WorkModel implements _WorkModel {
         (other.runtimeType == runtimeType &&
             other is _WorkModel &&
             const DeepCollectionEquality().equals(other.rowId, rowId) &&
-            const DeepCollectionEquality().equals(other.majorItem, majorItem) &&
-            const DeepCollectionEquality().equals(other.minerItem, minerItem) &&
+            const DeepCollectionEquality().equals(other.item, item) &&
             const DeepCollectionEquality().equals(other.remark, remark) &&
             const DeepCollectionEquality().equals(other.images, images));
   }
@@ -218,8 +198,7 @@ class _$_WorkModel implements _WorkModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(rowId),
-      const DeepCollectionEquality().hash(majorItem),
-      const DeepCollectionEquality().hash(minerItem),
+      const DeepCollectionEquality().hash(item),
       const DeepCollectionEquality().hash(remark),
       const DeepCollectionEquality().hash(images));
 
@@ -237,8 +216,7 @@ class _$_WorkModel implements _WorkModel {
 abstract class _WorkModel implements WorkModel {
   const factory _WorkModel(
       {int rowId,
-      String majorItem,
-      String minerItem,
+      List<String> item,
       String remark,
       Map<String, String> images}) = _$_WorkModel;
 
@@ -248,9 +226,7 @@ abstract class _WorkModel implements WorkModel {
   @override
   int get rowId;
   @override
-  String get majorItem;
-  @override
-  String get minerItem;
+  List<String> get item;
   @override
   String get remark;
   @override
