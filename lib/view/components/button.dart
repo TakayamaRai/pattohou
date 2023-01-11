@@ -93,3 +93,54 @@ class DisableButton extends StatelessWidget {
     );
   }
 }
+
+class OutLineButton extends StatelessWidget {
+  final String name;
+  final double? height;
+  final double? width;
+  final double? left;
+  final double? top;
+  final double? right;
+  final double? bottom;
+  final Color? color;
+  final Function onPressed;
+
+  const OutLineButton({
+    Key? key,
+    required this.name,
+    this.height,
+    this.width,
+    this.left,
+    this.top,
+    this.right,
+    this.bottom,
+    this.color,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: left ?? 0, top: top ?? 0, right: right ?? 0, bottom: bottom ?? 0),
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: TextButton(
+          style: OutlinedButton.styleFrom(
+            primary: color ?? MyColor.primary,
+            backgroundColor: Colors.white,
+            side: BorderSide(color: color ?? MyColor.primary),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
+          ),
+          onPressed: () {
+            onPressed();
+          },
+          child: Text(
+            name,
+            style: TextStyle(color: color ?? MyColor.primary, fontSize: 16.0, fontWeight: FontWeight.w600),
+          ),
+        ),
+      ),
+    );
+  }
+}

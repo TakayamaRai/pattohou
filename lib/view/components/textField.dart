@@ -4,7 +4,7 @@ import 'package:pattohou/data/color.dart';
 import 'package:pattohou/view/components/label.dart';
 import 'package:pattohou/view/components/text.dart';
 
-class MyTextFieldWithLabel extends StatelessWidget {
+class MyTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String? title;
@@ -17,7 +17,7 @@ class MyTextFieldWithLabel extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final FocusNode? focusNode;
 
-  const MyTextFieldWithLabel({
+  const MyTextField({
     Key? key,
     this.controller,
     this.keyboardType,
@@ -89,7 +89,7 @@ class MyTextFieldWithLabel extends StatelessWidget {
         if (errorText.isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(top: 3.0),
-            child: text.p14normal(text: errorText, color: MyColor.gray),
+            child: text.p14normal(text: errorText, color: MyColor.red),
           ),
       ],
     );

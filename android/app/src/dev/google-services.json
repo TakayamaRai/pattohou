@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "877293213626-hmi7l0ekrgj70nnhv89j95lq81qe44fm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rai.pattohou",
+            "certificate_hash": "36056ae4423b9ddef0679266c669ee076a7da82c"
+          }
+        },
+        {
           "client_id": "877293213626-60m477p18i3fo0jd8pupue82p8de3dj2.apps.googleusercontent.com",
           "client_type": 3
         }

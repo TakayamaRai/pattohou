@@ -1,5 +1,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/data/firebase_auth_eroor.dart';
 
@@ -10,7 +11,6 @@ final firebaseAuthRepoProvider = Provider<AuthRepoProvider>(
 final authStateChangesProvider = StreamProvider<User?>((ref) {
   return ref.read(firebaseAuthProvider).authStateChanges();
 });
-
 
 @override
 class AuthRepoProvider {
@@ -69,15 +69,27 @@ class AuthRepoProvider {
     return FirebaseAuthExceptionHandler.exceptionMessage(result);
   }
 
-  Future<void> signOut() async {
-    await _read(firebaseAuthProvider).signOut();
-  }
-
-  Future<String> passwordResetEmail({required String email}) async{
+  Future<String> signInWithGoogle() async {
     FirebaseAuthResultStatus result;
     try {
-      await _read(firebaseAuthProvider).sendPasswordResetEmail(email: email);
-      result = FirebaseAuthResultStatus.Successful;
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      final UserCredential authUser =
+      await _read(firebaseAuthProvider).signInWithCredential(credential);
+
+      if (authUser.user != null) {
+        result = FirebaseAuthResultStatus.Successful;
+        _uid = authUser.user!.uid;
+      } else {
+        result = FirebaseAuthResultStatus.Undefined;
+      }
     } on FirebaseAuthException catch (e) {
       result = FirebaseAuthExceptionHandler.handleException(e);
       return FirebaseAuthExceptionHandler.exceptionMessage(result);
@@ -85,15 +97,29 @@ class AuthRepoProvider {
     return FirebaseAuthExceptionHandler.exceptionMessage(result);
   }
 
-  Future<String> sendEmailVerification()async{
-    FirebaseAuthResultStatus result = FirebaseAuthResultStatus.Successful;
+  Future<String>signInWithApple()async{
+    FirebaseAuthResultStatus result;
     try {
-      await _read(firebaseAuthProvider).currentUser?.sendEmailVerification();
+      final appleProvider = AppleAuthProvider();
+      final UserCredential authUser =
+      await _read(firebaseAuthProvider).signInWithProvider(appleProvider);
+
+      if (authUser.user != null) {
+        result = FirebaseAuthResultStatus.Successful;
+        _uid = authUser.user!.uid;
+      } else {
+        result = FirebaseAuthResultStatus.Undefined;
+      }
     } on FirebaseAuthException catch (e) {
       result = FirebaseAuthExceptionHandler.handleException(e);
       return FirebaseAuthExceptionHandler.exceptionMessage(result);
     }
     return FirebaseAuthExceptionHandler.exceptionMessage(result);
+
+  }
+
+  Future<void> signOut() async {
+    await _read(firebaseAuthProvider).signOut();
   }
 
 }

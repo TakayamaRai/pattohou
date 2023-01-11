@@ -10,11 +10,15 @@ class MyScrollView extends StatelessWidget {
   final Widget child;
   final double? vertical;
   final double? horizontal;
+  final bool? isLoading;
+  final String? loadingText;
   const MyScrollView({
     this.title,
     this.isBackIcon,
     this.vertical,
     this.horizontal,
+    this.isLoading,
+    this.loadingText,
     required this.child
   });
 
@@ -38,6 +42,8 @@ class MyScrollView extends StatelessWidget {
                 )
             ),
           ),
+          if(isLoading??false)
+            Loading().dialog(message: loadingText??"お待ちください"),
         ],
       ),
     );

@@ -62,6 +62,9 @@ dependencies:
   pdf: ^3.8.3
   file: ^6.1.4
   heic_to_jpg: ^0.2.0
+  google_sign_in: ^5.4.2
+  flutter_signin_button: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
