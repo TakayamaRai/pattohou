@@ -13,6 +13,7 @@ class MyScrollView extends StatelessWidget {
   final bool? isLoading;
   final String? loadingText;
   const MyScrollView({
+    super.key,
     this.title,
     this.isBackIcon,
     this.vertical,

@@ -16,6 +16,7 @@ class MyTextField extends StatelessWidget {
   final bool obscureText;
   final ValueChanged<String>? onChanged;
   final FocusNode? focusNode;
+  final double? width;
 
   const MyTextField({
     Key? key,
@@ -30,6 +31,7 @@ class MyTextField extends StatelessWidget {
     this.hasRequiredLabel,
     this.onChanged,
     this.focusNode,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -57,33 +59,36 @@ class MyTextField extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 10.0),
             child: text.p14normal(text: message!),
           ),
-        ColoredBox(
-          color: Colors.white,
-          child: TextFormField(
-            controller: controller,
-            keyboardType: keyboardType ?? TextInputType.text,
-            focusNode: focusNode,
-            enabled: enabled ?? true,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              filled: !(enabled ?? true),
-              fillColor: MyColor.gray,
-              hintText: hintText ?? '',
-              hintStyle: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
-              enabledBorder: OutlineInputBorder(
-                borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
+        SizedBox(
+          width: width ?? MediaQuery.of(context).size.width,
+          child: ColoredBox(
+            color: Colors.white,
+            child: TextFormField(
+              controller: controller,
+              keyboardType: keyboardType ?? TextInputType.text,
+              focusNode: focusNode,
+              enabled: enabled ?? true,
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                filled: !(enabled ?? true),
+                fillColor: MyColor.gray,
+                hintText: hintText ?? '',
+                hintStyle: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
+                ),
+                disabledBorder: OutlineInputBorder(
+                  borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderSide: errorText.isEmpty ? const BorderSide(color: MyColor.gray, width: 1.0) : const BorderSide(color: MyColor.red, width: 1.0),
-              ),
+              onChanged: onChanged,
             ),
-            onChanged: onChanged,
           ),
         ),
         if (errorText.isNotEmpty)

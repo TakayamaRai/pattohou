@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/data/color.dart';
 import 'package:pattohou/view/components/button.dart';
-import 'package:pattohou/view/components/load_dialog.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
 import 'package:pattohou/view/components/textField.dart';
+import 'package:pattohou/view/signIn/sign_up_base.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 import 'package:pattohou/viewmodel/signIn/sign_in_viewmodel.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -29,13 +29,13 @@ class SignInPage extends HookConsumerWidget {
               SignInButton(
                 Buttons.Apple,
                 text: "Apple IDで続ける",
-                onPressed: () => onSignInWithApple(ref: ref),
+                onPressed: () => onSignInWithApple(context: context, ref: ref),
               ),
             if(Platform.isAndroid)
               SignInButton(
                 Buttons.Google,
                 text: "Googleで続ける",
-                onPressed: () => onSignInWithGoogle(ref: ref),
+                onPressed: () => onSignInWithGoogle(context: context, ref: ref),
               ),
             const SizedBox(height: 20,),
             MyText().p14normal(text: "または",color: MyColor.gray),
@@ -59,8 +59,6 @@ class SignInPage extends HookConsumerWidget {
             const SizedBox(height: 40,),
             ColorButton(
                 name: "ログイン",
-                height: 50,
-                width: MediaQuery.of(context).size.width,
                 onPressed: () async => onSignIn(
                     context: context, ref: ref,
                     email: _ctrlEmail.text, password: _ctrlPassword.text)
@@ -92,32 +90,57 @@ class SignInPage extends HookConsumerWidget {
     //         builder: (_) => Splash()),(_)=>false);
   }
 
-  onSignInWithGoogle({required WidgetRef ref}) async{
+  onSignInWithGoogle({required BuildContext context,required WidgetRef ref}) async{
     final vmRead = ref.read(signInProvider.notifier);
     final loading = ref.read(loadingStatusProvider.notifier)..start();
     final isSuccess = await vmRead.signInWithGoogle();
-    if(isSuccess){
+    if(!isSuccess){
+      loading.end();
+      return;
+    }
+    await vmRead.getUser();
+    if(vmRead.isExistUser()){
       print('サインイン成功');
     }
+    if (!context.mounted) return;
+    await Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (context){
+          return SignUpBase();
+        }));
+    loading.end();
+  }
+
+  onSignInWithApple({required BuildContext context,required WidgetRef ref}) async{
+    final vmRead = ref.read(signInProvider.notifier);
+    final loading = ref.read(loadingStatusProvider.notifier)..start();
+
+    final isSuccess = await vmRead.signInWithApple();
+    if(!isSuccess){
+      loading.end();
+      return;
+    }
+
+    await vmRead.getUser();
+
+    if(vmRead.isExistUser()){
+      print('サインイン成功');
+    }
+    if (!context.mounted) return;
+    await Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (context){
+          return SignUpBase();
+        }));
     loading.end();
   }
 
   void onSignUp({required BuildContext context}){
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute<void>(builder: (context){
-    //       return RegisterPreparation();
-    //     }));
-  }
-
-  onSignInWithApple({required WidgetRef ref}) async{
-    final vmRead = ref.read(signInProvider.notifier);
-    final loading = ref.read(loadingStatusProvider.notifier)..start();
-    final isSuccess = await vmRead.signInWithApple();
-    if(isSuccess){
-      print('サインイン成功');
-    }
-    loading.end();
+    Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (context){
+          return SignUpBase();
+        }));
   }
 
 }

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/data/shared_preference_key.dart';
 import 'package:pattohou/models/local/model/sign_in_model.dart';
 import 'package:pattohou/models/local/shared_preference.dart';
+import 'package:pattohou/models/repository/database/user_repository.dart';
 import 'package:pattohou/models/repository/firebase/firebaseAuth.dart';
 import 'package:pattohou/viewmodel/common/validator.dart';
 
@@ -83,5 +83,13 @@ class SignInNotifier extends StateNotifier<SignIn>{
     }
     loading.end();
     return false;
+  }
+
+  Future<void> getUser() async{
+    await _read(userRepoProvider).getUser();
+  }
+
+  bool isExistUser() {
+    return UserRepository.userModel.lastName != "";
   }
 }

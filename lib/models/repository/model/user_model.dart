@@ -32,6 +32,7 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
   factory UserModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
+    if(doc.data() == null) return UserModel.empty();
     final data = doc.data()!;
     return UserModel.fromJson(data);
   }

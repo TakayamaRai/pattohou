@@ -34,8 +34,8 @@ class ColorButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: left ?? 0, top: top ?? 0, right: right ?? 0, bottom: bottom ?? 0),
       child: SizedBox(
-        height: height,
-        width: width,
+        height: height ?? 50,
+        width: width ?? MediaQuery.of(context).size.width,
         child: TextButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(color ?? MyColor.primary),
@@ -127,7 +127,7 @@ class OutLineButton extends StatelessWidget {
         width: width,
         child: TextButton(
           style: OutlinedButton.styleFrom(
-            primary: color ?? MyColor.primary,
+            foregroundColor: color ?? MyColor.primary,
             backgroundColor: Colors.white,
             side: BorderSide(color: color ?? MyColor.primary),
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),

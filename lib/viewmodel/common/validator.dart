@@ -14,4 +14,13 @@ class Validator {
     if (20 < password.length) return "パスワードは２０文字以内です";
     return "";
   }
+  String checkLastName({required String lastName}){
+    if (lastName.isEmpty) return '＊姓を入力してください';
+    return '';
+  }
+
+  String checkFirstName({required String firstName}){
+    if (firstName.isEmpty) return '＊名を入力してください';
+    return '';
+  }
 }

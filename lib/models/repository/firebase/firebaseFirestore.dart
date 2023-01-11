@@ -21,14 +21,15 @@ extension FirebaseFirestoreX on FirebaseFirestore {
   DocumentReference<Map<String, dynamic>> worksDocRef(String projectId, String markerId) => worksCollectionRef(projectId).doc(markerId);
 
   /// ドキュメント
-  Map<String, dynamic> setCreateDoc(Map<String, dynamic> createDoc, String uid) {
-    createDoc.addAll({
+  Map<String, dynamic> setCreateDoc(
+      {required Map<String, dynamic> doc,required String uid}) {
+    doc.addAll({
       'createdAt': FieldValue.serverTimestamp(),
       'createdUid': uid,
       'updatedAt': FieldValue.serverTimestamp(),
       'updatedUid': uid,
     });
-    return createDoc;
+    return doc;
   }
 
   Map<String, dynamic> setUpdateDoc(Map<String, dynamic> createDoc, String uid) {
