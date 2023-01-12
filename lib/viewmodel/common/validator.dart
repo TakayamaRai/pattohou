@@ -23,4 +23,11 @@ class Validator {
     if (firstName.isEmpty) return '＊名を入力してください';
     return '';
   }
+
+  String checkPostalCode({required String postalCode}){
+    if (postalCode.isEmpty) return '＊郵便番号を入力してください';
+    if (postalCode.length != 7) return '＊郵便番号は7桁で入力してください';
+    if (!RegExp(r'^[0-9]+$').hasMatch(postalCode)) return '＊数字を入力してください';
+    return '';
+  }
 }

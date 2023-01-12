@@ -5,6 +5,7 @@ import 'package:pattohou/view/components/button.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
 import 'package:pattohou/view/components/textField.dart';
+import 'package:pattohou/view/signIn/sgin_up_adrress.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 import 'package:pattohou/viewmodel/signIn/sign_up_viewmodel.dart';
 
@@ -94,7 +95,11 @@ class SignUpBase extends HookConsumerWidget {
           phoneNumber: _ctrlPhoneNumber.text,
           fax:_ctrlFax.text
       );
-      print("next");
+      Navigator.push(
+          context,
+          MaterialPageRoute<void>(builder: (context){
+            return SignUpAddress();
+          }));
     }
     print("Error");
   }
