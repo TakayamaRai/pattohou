@@ -8,6 +8,7 @@ import 'package:pattohou/view/components/image.dart';
 import 'package:pattohou/view/components/image_bottom_sheet.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
+import 'package:pattohou/view/project/home.dart';
 import 'package:pattohou/view/signIn/sgin_up_adrress.dart';
 import 'package:pattohou/view/signIn/sign_in.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
@@ -66,7 +67,7 @@ class SignUpLogo extends HookConsumerWidget {
     if (!context.mounted) return;
     await Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute<bool>(
-            builder: (_) => SignInPage()),(_)=>false);
+            builder: (_) => Home()),(_)=>false);
   }
 
   Future<void> _setImage({required BuildContext context,required WidgetRef ref}) async {

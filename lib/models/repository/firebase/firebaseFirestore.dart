@@ -6,19 +6,25 @@ final firebaseFirestoreProvider = Provider((ref) => FirebaseFirestore.instance);
 
 extension FirebaseFirestoreX on FirebaseFirestore {
   /// users
-  CollectionReference<Map<String, dynamic>> usersCollectionRef() => collection('users');
+  CollectionReference<Map<String, dynamic>> usersCollectionRef() =>
+      collection('users');
 
-  DocumentReference<Map<String, dynamic>> usersDocRef(String uid) => usersCollectionRef().doc(uid);
+  DocumentReference<Map<String, dynamic>> usersDocRef(String uid) =>
+      usersCollectionRef().doc(uid);
 
   /// projects
-  CollectionReference<Map<String, dynamic>> projectsCollectionRef() => collection('projects');
+  CollectionReference<Map<String, dynamic>> projectsCollectionRef() =>
+      collection('projects');
 
-  DocumentReference<Map<String, dynamic>> projectsDocRef(String projectId) => projectsCollectionRef().doc(projectId);
+  DocumentReference<Map<String, dynamic>> projectsDocRef(String projectId) =>
+      projectsCollectionRef().doc(projectId);
 
   /// works
-  CollectionReference<Map<String, dynamic>> worksCollectionRef(String projectId) => projectsCollectionRef().doc(projectId).collection('works');
+  CollectionReference<Map<String, dynamic>> worksCollectionRef(String projectId) =>
+      projectsCollectionRef().doc(projectId).collection('works');
 
-  DocumentReference<Map<String, dynamic>> worksDocRef(String projectId, String markerId) => worksCollectionRef(projectId).doc(markerId);
+  DocumentReference<Map<String, dynamic>> worksDocRef(String projectId, String workId) =>
+      worksCollectionRef(projectId).doc(workId);
 
   /// ドキュメント
   Map<String, dynamic> setCreateDoc(

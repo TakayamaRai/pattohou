@@ -7,6 +7,7 @@ import 'package:pattohou/view/components/button.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
 import 'package:pattohou/view/components/textField.dart';
+import 'package:pattohou/view/project/home.dart';
 import 'package:pattohou/view/signIn/sign_up_base.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 import 'package:pattohou/viewmodel/signIn/sign_in_viewmodel.dart';
@@ -29,13 +30,13 @@ class SignInPage extends HookConsumerWidget {
               SignInButton(
                 Buttons.Apple,
                 text: "Apple IDで続ける",
-                onPressed: () => onSignInWithApple(context: context, ref: ref),
+                onPressed: () => _signIn(type: "apple",context: context,ref: ref),
               ),
             if(Platform.isAndroid)
               SignInButton(
                 Buttons.Google,
                 text: "Googleで続ける",
-                onPressed: () => onSignInWithGoogle(context: context, ref: ref),
+                onPressed: () => _signIn(type: "google",context: context,ref: ref),
               ),
             const SizedBox(height: 20,),
             MyText().p14normal(text: "または",color: MyColor.gray),
@@ -74,65 +75,58 @@ class SignInPage extends HookConsumerWidget {
       ),);
   }
 
-  Future<void> onSignIn({required BuildContext context, required WidgetRef ref,required String email, required String password})async {
+  Future<void> onSignIn({
+    required BuildContext context,
+    required WidgetRef ref,
+    required String email,
+    required String password})async {
     final vmRead = ref.read(signInProvider.notifier);
-    final loading = ref.read(loadingStatusProvider.notifier)..start();
     vmRead.clearErrText();
     vmRead.emailValidator(email: email);
     vmRead.passwordValidator(password: password);
-    final isSuccess = await vmRead.signIn();
-    if(isSuccess){
-      print('サインイン成功');
-    }
-    loading.end();
-    // await Navigator.of(context).pushAndRemoveUntil(
-    //     MaterialPageRoute<bool>(
-    //         builder: (_) => Splash()),(_)=>false);
+    await _signIn(type: "mail",context: context,ref: ref);
   }
 
-  onSignInWithGoogle({required BuildContext context,required WidgetRef ref}) async{
+  _signIn({required String type, required BuildContext context,required WidgetRef ref}) async{
     final vmRead = ref.read(signInProvider.notifier);
     final loading = ref.read(loadingStatusProvider.notifier)..start();
-    final isSuccess = await vmRead.signInWithGoogle();
+    bool isSuccess = false;
+
+    switch (type){
+      case "mail":
+        isSuccess = await vmRead.signIn();
+      break;
+      case "google":
+        isSuccess = await vmRead.signInWithGoogle();
+        break;
+      case "apple":
+        isSuccess = await vmRead.signInWithApple();
+        break;
+      default:
+        isSuccess = false;
+    }
+
     if(!isSuccess){
       loading.end();
       return;
     }
     await vmRead.getUser();
+    loading.end();
+    // ユーザー登録あればHomeへ
     if(vmRead.isExistUser()){
-      print('サインイン成功');
+      if (!context.mounted) return;
+      await Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute<bool>(
+              builder: (_) => Home()),(_)=>false);
+      return;
     }
+    // ユーザー登録なければ新規会員登録へ
     if (!context.mounted) return;
     await Navigator.push(
         context,
         MaterialPageRoute<void>(builder: (context){
           return SignUpBase();
         }));
-    loading.end();
-  }
-
-  onSignInWithApple({required BuildContext context,required WidgetRef ref}) async{
-    final vmRead = ref.read(signInProvider.notifier);
-    final loading = ref.read(loadingStatusProvider.notifier)..start();
-
-    final isSuccess = await vmRead.signInWithApple();
-    if(!isSuccess){
-      loading.end();
-      return;
-    }
-
-    await vmRead.getUser();
-
-    if(vmRead.isExistUser()){
-      print('サインイン成功');
-    }
-    if (!context.mounted) return;
-    await Navigator.push(
-        context,
-        MaterialPageRoute<void>(builder: (context){
-          return SignUpBase();
-        }));
-    loading.end();
   }
 
   void onSignUp({required BuildContext context}){
@@ -142,6 +136,5 @@ class SignInPage extends HookConsumerWidget {
           return SignUpBase();
         }));
   }
-
 }
 
