@@ -101,7 +101,6 @@ class SignUpBase extends HookConsumerWidget {
             return SignUpAddress();
           }));
     }
-    print("Error");
   }
 
 }

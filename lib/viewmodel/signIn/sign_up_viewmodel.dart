@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/models/local/model/sign_up_model.dart';
 import 'package:pattohou/models/repository/api/postal_code.dart';
+import 'package:pattohou/models/repository/database/user_repository.dart';
 import 'package:pattohou/models/repository/model/user_model.dart';
 import 'package:pattohou/viewmodel/common/validator.dart';
 
@@ -99,5 +100,9 @@ class SignUpNotifier extends StateNotifier<SignUp> {
               apartment: apartment
             ))
     );
+  }
+
+  createUser() async{
+    await _read(userRepoProvider).createUser(state.userModel);
   }
 }

@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>ギャラリーからの画像を書類に添付する為に使用します</string>
+    <key>NSCameraUsageDescription</key>
+    <string>カメラからの画像を書類に添付する為に使用します</string>
 </dict>
 </plist>

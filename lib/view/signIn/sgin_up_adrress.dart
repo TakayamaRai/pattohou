@@ -5,6 +5,7 @@ import 'package:pattohou/view/components/address.dart';
 import 'package:pattohou/view/components/button.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
+import 'package:pattohou/view/signIn/sign_up_logo.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 import 'package:pattohou/viewmodel/signIn/sign_up_viewmodel.dart';
 
@@ -75,7 +76,11 @@ class SignUpAddress extends HookConsumerWidget {
       cityBlock: ref.read(_ctrlCityBlockProvider).text,
       apartment: _ctrlApartment.text,
     );
-    print("Error");
+    Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (context){
+          return SignUpLogo();
+        }));
   }
 
   _onChangePostalCode({required WidgetRef ref, required String postalCode}) {

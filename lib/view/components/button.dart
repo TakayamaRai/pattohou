@@ -40,7 +40,7 @@ class ColorButton extends StatelessWidget {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(color ?? MyColor.primary),
             ),
-            child: Text(name, style: TextStyle(color: textColor, fontSize: 16.0, fontWeight: FontWeight.w600)),
+            child: MyText().p16bold(text: name,color: textColor),
             onPressed: () {
               onPressed();
             }),
@@ -135,11 +135,67 @@ class OutLineButton extends StatelessWidget {
           onPressed: () {
             onPressed();
           },
-          child: Text(
-            name,
-            style: TextStyle(color: color ?? MyColor.primary, fontSize: 16.0, fontWeight: FontWeight.w600),
+          child:
+          MyText().p16bold(text: name,color: color ?? MyColor.primary),
           ),
         ),
+    );
+  }
+}
+
+
+class IconColorButton extends StatelessWidget {
+  final String name;
+  final double? height;
+  final double? width;
+  final double? left;
+  final double? top;
+  final double? right;
+  final double? bottom;
+  final Color? color;
+  final Color? textColor;
+  final IconData iconData;
+  final double? iconSize;
+  final Function onPressed;
+
+  const IconColorButton({
+    Key? key,
+    required this.name,
+    this.height,
+    this.width,
+    this.left,
+    this.top,
+    this.right,
+    this.bottom,
+    this.color,
+    this.textColor = Colors.white,
+    required this.iconData,
+    this.iconSize,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: left ?? 0, top: top ?? 0, right: right ?? 0, bottom: bottom ?? 0),
+      child: SizedBox(
+        height: height ?? 50,
+        width: width ?? MediaQuery.of(context).size.width,
+        child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(color ?? MyColor.primary),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(iconData, size: iconSize,color: textColor,),
+                const SizedBox(width: 6.0),
+                MyText().p16bold(text: name,color: textColor),
+              ],
+            ),
+            onPressed: () {
+              onPressed();
+            }),
       ),
     );
   }

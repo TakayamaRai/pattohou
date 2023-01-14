@@ -33,7 +33,8 @@ class MyScrollView extends StatelessWidget {
           if(title != null) appBar(context, isBackIcon ?? false, title ?? ""),
           Padding(
             padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top + appBarHeight),
+                top: MediaQuery.of(context).padding.top +
+                    (title != null ? appBarHeight : 0)),
             child: SingleChildScrollView(
                 child: SafeArea(
                   child: Padding(

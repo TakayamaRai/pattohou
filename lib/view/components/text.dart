@@ -65,4 +65,20 @@ class MyText{
         fontWeight: FontWeight.w600,
         overflow: (isEllipsis ?? true) ? TextOverflow.ellipsis : TextOverflow.clip),);
   }
+
+  Widget p18normal({required String text, Color? color,bool? isEllipsis}){
+    return Text(text,style: TextStyle(
+        color: color ?? Colors.black,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w300,
+        overflow: (isEllipsis ?? true) ? TextOverflow.ellipsis : TextOverflow.clip),);
+  }
+
+  Widget p18bold({required String text, Color? color,bool? isEllipsis}){
+    return Text(text,style: TextStyle(
+        color: color ?? Colors.black,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w600,
+        overflow: (isEllipsis ?? true) ? TextOverflow.ellipsis : TextOverflow.clip),);
+  }
 }
