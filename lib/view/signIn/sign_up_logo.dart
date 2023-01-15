@@ -9,8 +9,6 @@ import 'package:pattohou/view/components/image_bottom_sheet.dart';
 import 'package:pattohou/view/components/scroll_view.dart';
 import 'package:pattohou/view/components/text.dart';
 import 'package:pattohou/view/project/home.dart';
-import 'package:pattohou/view/signIn/sgin_up_adrress.dart';
-import 'package:pattohou/view/signIn/sign_in.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 import 'package:pattohou/viewmodel/common/logo_viewmodel.dart';
 import 'package:pattohou/viewmodel/signIn/sign_up_viewmodel.dart';
@@ -22,7 +20,7 @@ class SignUpLogo extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageFile = ref.watch(logoStatusProvider.select((s) => s.file));
+    final fileState = ref.watch(logoStatusProvider.select((s) => s.file));
     return MyScrollView(
         isLoading: ref.watch(loadingStatusProvider).isLoading,
         child: Column(
@@ -34,7 +32,7 @@ class SignUpLogo extends HookConsumerWidget {
             const SizedBox(height: 20,),
             ImageComponent(
               errorText: '',
-              image: imageFile,
+              image: fileState,
               onAdd: () async => await _setImage(context: context, ref: ref),
               onChange: (oldImage) async => _setImage(context: context, ref: ref),
               onDelete: (image) async => _onDelete(context, ref,image),

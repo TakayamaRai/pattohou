@@ -1,11 +1,12 @@
 
 class SignIn{
-  const SignIn({required this.email, required this.errorEmail, required this.password, required this.errorPassword});
-
   final String email;
   final String errorEmail;
   final String password;
   final String errorPassword;
+
+  const SignIn({required this.email, required this.errorEmail, required this.password, required this.errorPassword});
+
 
   SignIn copyWith({String? email, String? errorEmail, String? password, String? errorPassword}){
     return SignIn(

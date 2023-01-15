@@ -6,4 +6,5 @@ class MyColor {
   static const Color second = Color(0xFF6D9EE3);
   static const Color gray = Color(0xFF95989A);
   static const Color background = Color(0xFFF9FAFC);
+  static const Color bottomSheetHeaderText = Color(0xFF008AFD);
 }

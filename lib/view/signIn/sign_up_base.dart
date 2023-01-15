@@ -87,20 +87,20 @@ class SignUpBase extends HookConsumerWidget {
     vmRead.clearErrText();
     vmRead.lastNameValidator(lastName: _ctrlLastName.text);
     vmRead.firstNameValidator(firstName: _ctrlFirstName.text);
-    if(vmRead.hasNoError()){
-      vmRead.copyWithUserModel(
+    if(vmRead.hasError()) return;
+
+    vmRead.copyWithUserModel(
         lastName:_ctrlLastName.text,
-          firstName: _ctrlFirstName.text,
-          companyName: _ctrlCompanyName.text,
-          phoneNumber: _ctrlPhoneNumber.text,
-          fax:_ctrlFax.text
-      );
-      Navigator.push(
-          context,
-          MaterialPageRoute<void>(builder: (context){
-            return SignUpAddress();
-          }));
-    }
+        firstName: _ctrlFirstName.text,
+        companyName: _ctrlCompanyName.text,
+        phoneNumber: _ctrlPhoneNumber.text,
+        fax:_ctrlFax.text
+    );
+    Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (context){
+          return SignUpAddress();
+        }));
   }
 
 }

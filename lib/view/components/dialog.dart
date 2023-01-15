@@ -18,7 +18,7 @@ class CompleteDialog extends StatelessWidget {
         children: [
           Image.asset("assets/complete.png"),
           const SizedBox(height: 10,),
-          text.p12normal(text: message),
+          text.p12normal(text: message,isEllipsis: false,textAlign: TextAlign.center),
           const SizedBox(height: 10,),
           DisableButton(
             name: "閉じる",

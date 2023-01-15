@@ -1,16 +1,17 @@
 import 'package:pattohou/models/repository/model/user_model.dart';
 
 class SignUp {
+  final String errorLastName;
+  final String errorFirstName;
+  final String errorPostalCode;
+  final UserModel userModel;
+
   const SignUp(
       {required this.errorLastName,
       required this.errorFirstName,
       required this.errorPostalCode,
       required this.userModel});
 
-  final String errorLastName;
-  final String errorFirstName;
-  final String errorPostalCode;
-  final UserModel userModel;
 
   SignUp copyWith(
       {String? errorLastName,

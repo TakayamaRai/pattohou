@@ -30,4 +30,9 @@ class Validator {
     if (!RegExp(r'^[0-9]+$').hasMatch(postalCode)) return '＊数字を入力してください';
     return '';
   }
+
+  checkName({required String name}) {
+    if (name.isEmpty) return '＊物件名を入力してください';
+    return '';
+  }
 }

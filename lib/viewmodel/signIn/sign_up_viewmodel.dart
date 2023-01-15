@@ -37,9 +37,9 @@ class SignUpNotifier extends StateNotifier<SignUp> {
     state = state.copyWith(errorLastName: "", errorFirstName: "");
   }
 
-  bool hasNoError() {
+  bool hasError() {
     List<String> error = [state.errorLastName, state.errorFirstName];
-    return error.every((e) => e == "");
+    return !error.every((e) => e == "");
   }
 
   void copyWithUserModel(
