@@ -38,7 +38,7 @@ class MyScrollView extends StatelessWidget {
             child: SingleChildScrollView(
                 child: SafeArea(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: vertical ?? 20.0,horizontal: horizontal ?? 30.0),
+                    padding: EdgeInsets.symmetric(vertical: vertical ?? 30.0,horizontal: horizontal ?? 20.0),
                     child: child,
                   ),
                 )

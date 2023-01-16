@@ -16,7 +16,7 @@ class CompleteDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset("assets/complete.png"),
+          const Icon(Icons.check_circle,color: MyColor.primary,size: 50,),
           const SizedBox(height: 10,),
           text.p12normal(text: message,isEllipsis: false,textAlign: TextAlign.center),
           const SizedBox(height: 10,),

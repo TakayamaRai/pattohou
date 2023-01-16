@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/data/shared_preference_key.dart';
 import 'package:pattohou/models/local/model/sign_in_model.dart';
-import 'package:pattohou/models/local/shared_preference.dart';
+import 'package:pattohou/models/local/utils/shared_preference.dart';
 import 'package:pattohou/models/repository/database/user_repository.dart';
 import 'package:pattohou/models/repository/firebase/firebaseAuth.dart';
 import 'package:pattohou/viewmodel/common/validator.dart';

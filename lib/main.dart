@@ -7,9 +7,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pattohou/data/color.dart';
-import 'package:pattohou/models/local/shared_preference.dart';
+import 'package:pattohou/models/local/utils/shared_preference.dart';
 import 'package:pattohou/models/local/utils/image_local.dart';
 import 'package:pattohou/view/signIn/sign_in.dart';
+import 'package:pattohou/view/work/layout_settings.dart';
 
 Future<void> main() async {
   await runZonedGuarded<Future<void>>(() async {
@@ -49,7 +50,7 @@ class MyApp extends HookConsumerWidget {
       theme: ThemeData(
           primaryColor: MyColor.primary,
           fontFamily: 'Roboto'),
-      home:  SignInPage(),
+      home:  LayoutSettings(),
     );
   }
 }

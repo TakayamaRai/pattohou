@@ -9,6 +9,7 @@ import 'package:pattohou/view/project/components/create_button.dart';
 import 'package:pattohou/view/project/components/home_appber.dart';
 import 'package:pattohou/view/project/components/project_tile.dart';
 import 'package:pattohou/view/project/create_project.dart';
+import 'package:pattohou/view/work/layout_settings.dart';
 import 'package:pattohou/viewmodel/common/loading_viewmodel.dart';
 
 class Home extends HookConsumerWidget {
@@ -56,7 +57,7 @@ class Home extends HookConsumerWidget {
                             child: ProjectTile(
                               id: mProjects.keys.elementAt(i),
                               project: mProjects.values.elementAt(i),
-                              onTap: () => _onTapProjectTile(),
+                              onTap: () => _onTapProjectTile(context),
                             ),
                           );
                         },
@@ -80,7 +81,12 @@ class Home extends HookConsumerWidget {
     );
   }
 
-  _onTapProjectTile() {}
+  _onTapProjectTile(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute<void>(builder: (context) {
+      return LayoutSettings();
+    }));
+
+  }
 
   _onTapCreateProject(BuildContext context) {
     Navigator.push(context, MaterialPageRoute<void>(builder: (context) {

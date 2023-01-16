@@ -15,4 +15,11 @@ class SP {
     return prefs?.getString(key) ?? "";
   }
 
+  static void setBool(key, value) {
+    prefs?.setBool(key, value);
+  }
+
+  static bool? getBool(key) {
+    return prefs?.getBool(key);
+  }
 }
